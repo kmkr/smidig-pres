@@ -1,0 +1,197 @@
+﻿<!DOCTYPE html>
+<html>  
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=Edge;chrome=1" />
+<title>Utvikling av javascriptapplikasjoner uten automatisert testing kan aldri bli smidig</title>
+<link href="http://fonts.googleapis.com/css?family=Droid+Sans|Droid+Sans+Mono" rel="stylesheet" type="text/css" />
+<link id="prettify-link" href="src/prettify/prettify.css" rel="stylesheet"/>
+<link href="css/moon.css" class="theme" rel="stylesheet" />
+
+<link href="css/km.css" rel="stylesheet" />
+<link href="css/jquery-ui-1.8.8.custom.css" rel="stylesheet" />
+<script src="src/jquery-1.4.4.min.js"></script>
+<script src="src/jquery-ui-1.8.8.custom.min.js"></script>
+<link href="css/default.css" rel="stylesheet" />
+</head>
+<body>
+<div class="presentation">
+  <span id="left-init-key" class="key" style="display:none;">&rarr;</span>
+  <div id="presentation-counter">Loading...</div>
+  <div class="slides">
+    <div class="slide" id="landing-slide">
+      <section>
+
+        <!--
+
+          Heisann, jeg heter Kris-Mikael og har det siste halve året jobbet med
+          å gjøre om tradisjonelle server-baserte applikasjoner til raske,
+          responsive, rike klienter.
+
+          Av alt jeg har lært i den prosessen er det at den smidige prosessen
+          man føler starter bra, stopper raskt om man ikke har automatisert
+          testdekning av koden som nå kjører på klientsiden.
+
+        -->
+
+        <h1>Utvikling av javascriptapplikasjoner uten automatisert testing kan aldri bli smidig</h1>
+
+        <p class="author">Kris-Mikael Krister</p>
+        <p class="email">kmk@iteraconsulting.no</p>
+      </section>
+    </div>
+
+    <div class="slide" id="first">
+      <section>
+
+        <!--
+
+
+        -->
+
+        <h1>Bakgrunn for utfordringer</h1>
+
+        <ul>
+          <li><span class="symbol">☺</span> Mye javascript</li>
+          <li><span class="symbol">☹</span> Testverktøy for javascript: modningsprosess pågår</li>
+          <li><span class="symbol">☹</span> Kjøres i terreng uten kontroll</li>
+          <li><span class="symbol">✇</span> Testing av kompleks oppførsel passer ikke til enhetstesting</li>
+          <li><span class="symbol">✇</span> DOM-interaksjon</li>
+          <li><span class="symbol">☹</span> Vi oppdager feil sent</li>
+          <li><span class="symbol">☹</span> Vi blir redde for å gjøre endringer</li>
+        </ul>
+
+      </section>
+    </div>
+
+    <div class="slide" id="second">
+      <section>
+
+        <!--
+
+        ...
+        Integrasjon med byggprosessen og CI
+        ...
+
+        -->
+
+        <h1>Ønsker ...</h1>
+
+        <ul>
+          <li><span class="symbol">✔</span> ... verifisering av <i>applikasjonen</i>, ikke delkomponenter av den</li>
+          <li><span class="symbol">✔</span> ... automatisert kjøring</li>
+          <li><span class="symbol">✔</span> ... å kunne benytte &lt;ditt testrammeverk&gt;</li>
+          <li><span class="symbol">✔</span> ... å unngå mocking</li>
+          <li><span class="symbol">✔</span> ... en triviell infrastruktur</li>
+        </ul>
+
+      </section>
+    </div>
+
+
+    <div class="slide" id="selenium">
+      <section>
+
+        <!--
+
+        ...
+
+        -->
+
+        <h1>Selenium 2 to the rescue ☃</h1>
+
+        Slides på følgende:
+        <ul>
+          <li>Bakgrunn, ta med et scshot</li>
+          <li>Versjon 2, scshot av forskjeller med IDE og javakode?</li>
+          <li>Pros/cons</li>
+          <li>Kodeeksempler</li>
+        </ul>
+      </section>
+    </div>
+
+    <div class="slide" id="selenium-phases">
+      <section>
+
+        <!--
+
+        Som antakeligvis kjent gjøres testing i flere faser, fra nær koden og
+        utviklere til nærmere systemet som en helhet og produkeier.
+
+        Selenium 2s ansvar ligger hovedsaklig i integrasjonstestfasen, som vil
+        si å teste en gruppering av moduler, deres interaksjon og sammenheng.
+
+        Man kan også bruke Selenium til systemtesting og akseptansetesting, men
+        avhengig av størrelsen på systemene kan det kreve mer oppsett enn
+        hensiktsmessig når man skal kjøre det automatisert. Vi har benyttet
+        Selenium i noen tilfeller til systemtesting og har hatt godt hell med
+        det, mens andre tilfeller har vi mocket XHR-kall for å unngå
+        nødvendigheten av  et komplett system under test.
+
+        -->
+
+        <div class="test-phase unit-test">
+          <p>Unittesting</p>
+        </div>
+
+        <div class="test-phase integration-test">
+          <p>Integrasjonstesting</p>
+        </div>
+
+        <div class="test-phase system-test">
+          <p>Systemtesting</p>
+        </div>
+
+        <div class="test-phase acceptance-test">
+          <p>Akseptansetesting</p>
+        </div>
+      </section>
+    </div>
+
+    <div class="slide" id="ninth">
+      <section>
+        <h1>Hvem kan bruke Selenium 2?</h1>
+
+        <ul>
+          <li><span class="symbol">❀</span> Selenium 2 har API for:</li>
+        </ul>
+
+        <div class="languages">
+          <span class="language java">Java</span>
+          <span class="language csharp">C#</span>
+          <span class="language ruby">Ruby</span>
+          <span class="language python">Python</span>
+        </div>
+
+        <ul>
+          <li><span class="symbol">❀</span> Webdrivers finnes til:</li>
+        </ul>
+        <div class="browsers">
+          <span class="browser">Chrome</span>
+          <span class="browser">Firefox</span>
+          <span class="browser">HtmlUnit</span>
+          <span class="browser">IE</span>
+          <span class="browser">Opera</span>
+          <span class="browser">Android</span>
+          <span class="browser">Iphone</span>
+        </div>
+      </section>
+    </div>
+
+    <div class="slide" id="questions">
+      <section>
+        <h1>?</h1>
+        <script>$(function() { $("#questions h1").css({"margin-top": "210px", "font-size": "100px"}); });</script>
+
+      </section>
+    </div>
+
+  </div> <!-- slides -->
+
+</div> <!-- presentation -->
+
+<script defer src="src/slidejs.js"></script>
+<script defer src="src/km.js"></script>
+<script defer src="src/prettify/prettify.js" onload="prettyPrint();"></script>
+</body>
+</html>

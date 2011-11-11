@@ -1,0 +1,56 @@
+
+- Bakgrunn/Utfordring
+  * Utvikling av javascriptapplikasjoner
+  * Javascripttesting er lite modent
+  * Applikasjonen kjører i mye større grad på klientsiden
+       * Kompleks oppførsel som ikke passer til enhetstesting
+         * Interaksjon med DOM - vanskelig å mocke en fullstendig DOM
+         * Oppførsel på tvers av moduler (og derfor enheter)
+         * 
+  * Forandringer kan føre til feil man sent oppdager
+  * Redd for å gjøre endringer
+  * Dynamisk språk setter testkravet enda høyere
+
+- Ønsker:
+  * Automatisert kjøring for å regresjonsteste kontinuerlig og sikre at tester ikke blir utdatert
+  * Kjøre gjennom applikasjonen akkurat som du ville gjort manuelt, bare at det går automatisk 
+  * Unngå å mocke DOM
+  * Unngå kompleks infrastruktur
+
+- Vise bilde av hvilke testområder som denne presentasjonen dekker (systemtest/integrasjonstest)
+
+- Selenium (2) to the rescue
+  * Hva er?
+  * Kort forskjell fra S1
+    * Annet design (webdriver i stedet for instrumentering via javascript)
+    * Annet API, renere, mer forståelig
+    * Mer gjennomført
+    * Mindre krav til infrastruktur
+
+  * Fordeler
+  * Ulemper
+    * WaitForPageLoad??
+    * Slow
+    * Begrenset feedback ved testfeil
+    * Mocking av js kan bli ugly
+  * Inkluder scshots
+  * Inkl kodesamples fra http://weblogs.java.net/blog/johnsmart/archive/2010/08/09/selenium-2web-driver-land-where-page-objects-are-king
+
+
+- Hvem kan bruke Selenium ?
+  * Hvilke folk
+  * Hvilke språk
+    * Java
+    * Ruby
+    * C#
+    * Python
+  * Hvilke nettlesere
+    * FF
+    * IE
+    * Opera
+    * Chrome
+    * Android
+    * Iphone
+    * HtmlUnit
+
+- Spørsmål
