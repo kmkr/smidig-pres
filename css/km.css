@@ -51,7 +51,7 @@ body p, body li{
   white-space: pre-wrap;
 }
 
-div.test-phase {
+div.test-phase,div.build-phase {
   display: inline-block;
   border-radius: 5px;
   -webkit-box-shadow: 6px 6px 7px #888;
@@ -60,6 +60,33 @@ div.test-phase {
   margin: 10px;
   border: 1px solid #360a0a;
   position: relative;
+}
+
+div#selenium-build-process h1 {
+  margin-bottom: 20px;
+}
+
+div.build-phase {
+  text-align: center;
+  margin: 20px;
+}
+
+div.main-build-phases {
+  text-align: center;
+}
+
+div.build-phase.end {
+  float: right;
+}
+
+div.build-phase.selenium-run, div.build-phase.webserver {
+  background: -webkit-gradient(linear, left top, left bottom, from(#4dd710), to(#5ed728));
+}
+
+div#wa {
+}
+
+div.build-phase.end, div.build-phase.start, div.build-phase.compile {
 }
 
 div.test-phase p {

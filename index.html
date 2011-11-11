@@ -57,7 +57,7 @@
           <li><span class="symbol">☹</span> Kjøres i terreng uten kontroll</li>
           <li><span class="symbol">✇</span> Testing av kompleks oppførsel passer ikke til enhetstesting</li>
           <li><span class="symbol">✇</span> DOM-interaksjon</li>
-          <li><span class="symbol">☹</span> Vi oppdager feil sent</li>
+          <li><span class="symbol">☹</span> Bortgjemte bugs &raquo; Vi oppdager feil sent</li>
           <li><span class="symbol">☹</span> Vi blir redde for å gjøre endringer</li>
         </ul>
 
@@ -89,7 +89,7 @@
     </div>
 
 
-    <div class="slide" id="selenium">
+    <div class="slide" id="selenium-pros">
       <section>
 
         <!--
@@ -100,12 +100,13 @@
 
         <h1>Selenium 2 to the rescue ☃</h1>
 
-        Slides på følgende:
         <ul>
-          <li>Bakgrunn, ta med et scshot</li>
-          <li>Versjon 2, scshot av forskjeller med IDE og javakode?</li>
-          <li>Pros/cons</li>
-          <li>Kodeeksempler</li>
+          <li><span class="symbol">☺</span> WebDriver</li>
+          <li><span class="symbol">☺</span> Renere API</li>
+          <li><span class="symbol">☺</span> Lett infrastruktur</li>
+          <li><span class="symbol">☺</span> Støtter distribuering</li>
+          <li><span class="symbol">☺</span> API for flere typer språk</li>
+          <li><span class="symbol">☺</span> Støtte for mange nettlesere</li>
         </ul>
       </section>
     </div>
@@ -148,7 +149,7 @@
       </section>
     </div>
 
-    <div class="slide" id="selenium-prosess">
+    <div class="slide" id="selenium-build-process">
       <section>
 
         <!--
@@ -157,16 +158,32 @@
 
         -->
 
-        <div class="build-phase compile">
-          <p>Kompilering</p>
+        <h1>Selenium i byggprosess</h1>
+
+        <div class="build-phase start">
+          <p>Byggprosess startes</p>
         </div>
 
-        <div class="build-phase webserver">
-          <p>Webserver starter</p>
+        <br />
+
+        <div class="main-build-phases">
+          <div class="build-phase compile">
+            <p>Kompilering</p>
+          </div>
+
+          <div class="build-phase webserver">
+            <p>Webserver starter</p>
+          </div>
+
+          <div class="build-phase selenium-run">
+            <p>Selenium 2-tester kjøres</p>
+          </div>
         </div>
 
-        <div class="build-phase selenium">
-          <p>Selenium 2 tester kjøres</p>
+        <br />
+
+        <div class="build-phase end">
+          <p>Byggprosess avsluttes</p>
         </div>
 
       </section>
@@ -181,19 +198,50 @@
 
         -->
 
+        <h1>Inkluder? (Maven)</h1>
+
         <pre class="prettyprint">
-			&lt;dependency&gt;
-				&lt;groupId&gt;org.seleniumhq.selenium&lt;/groupId&gt;
-				&lt;artifactId&gt;selenium-java&lt;/artifactId&gt;
-				&lt;version&gt;2.6.0&lt;/version&gt;
-				&lt;scope&gt;test&lt;/scope&gt;
-			&lt;/dependency&gt;
+&lt;dependency&gt;
+	&lt;groupId&gt;org.seleniumhq.selenium&lt;/groupId&gt;
+	&lt;artifactId&gt;selenium-java&lt;/artifactId&gt;
+	&lt;version&gt;2.12.0&lt;/version&gt;
+	&lt;scope&gt;test&lt;/scope&gt;
+&lt;/dependency&gt;
         </pre>
 
       </section>
     </div>
 
-    <div class="slide" id="ninth">
+    <div class="slide" id="selenium-code">
+      <section>
+
+        <h1>En test? (JUnit)</h1>
+
+        <!--
+
+        ...
+
+        -->
+
+        <pre class="prettyprint">
+@Test
+public void theUserShouldBeAbleToTypeInQueryTermsAndGetResultPageOnSubmit() {
+  WebDriver driver = new FirefoxDriver();
+  driver.get("http://www.google.com");
+
+  WebElement queryField = driver.findElement(By.name("q"));
+  queryField.sendKeys("cats");
+  queryField.submit();  
+
+  assertThat(driver.getTitle(), containsString("cats"));    
+}
+        </pre>
+
+      </section>
+    </div>
+    
+
+    <div class="slide" id="selenium-audience">
       <section>
         <h1>Hvem kan bruke Selenium 2?</h1>
 
@@ -220,6 +268,24 @@
           <span class="browser">Android</span>
           <span class="browser">Iphone</span>
         </div>
+      </section>
+    </div>
+
+    <div class="slide" id="selenium-cons">
+      <section>
+
+        <!--
+
+        ...
+
+        -->
+
+        <h1>Utfordringer med Selenium 2</h1>
+
+        <ul>
+          <li><span class="symbol">☹</span> Hastighet</li>
+          <li><span class="symbol">☹</span> Tilbakemeldinger ved feil</li>
+        </ul>
       </section>
     </div>
 
