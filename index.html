@@ -25,12 +25,17 @@
         <!--
 
           Heisann, jeg heter Kris-Mikael og har det siste halve året jobbet med
-          å gjøre om tradisjonelle server-baserte applikasjoner til raske,
-          responsive, rike klienter.
+          å gjøre om tradisjonelle server-baserte MVC-applikasjoner til
+          responsive, raske, rike klienter. I den nye arkitekturen kjører vi
+          stort sett alt av applikasjonslogikk på klienten, og vi har
+          single-page applikasjoner.
 
-          Av alt jeg har lært i den prosessen er det at den smidige prosessen
-          man føler starter bra, stopper raskt om man ikke har automatisert
-          testdekning av koden som nå kjører på klientsiden.
+          Noe jeg har fått erfare i løpet av den prosessen er at den smidige
+          prosessen man føler starter bra, stopper raskt om man ikke har en
+          automatisert testdekning av koden som nå kjører på klientsiden. Jeg
+          kommer til å presentere hvordan vi har løst en stor del av dette
+          gjennom Selenium 2, som er et verktøy man kan automatisere
+          browserinstrumentering.
 
         -->
 
@@ -46,19 +51,21 @@
 
         <!--
 
+        Ok, så utfordringer vi har hatt i sammenheng med dette...
+
+        Siste: Testdekning og testbarhet var helt fra starten viktig for oss, men...
 
         -->
 
         <h1>Bakgrunn for utfordringer</h1>
 
         <ul>
-          <li><span class="symbol">☺</span> Mye javascript</li>
-          <li><span class="symbol">☹</span> Testverktøy for javascript: modningsprosess pågår</li>
-          <li><span class="symbol">☹</span> Kjøres i terreng uten kontroll</li>
-          <li><span class="symbol">✇</span> Testing av kompleks oppførsel passer ikke til enhetstesting</li>
+          <li><span class="symbol">☹</span> Kjøres i terreng uten kontroll (browsers)</li>
           <li><span class="symbol">✇</span> DOM-interaksjon</li>
-          <li><span class="symbol">☹</span> Bortgjemte bugs &raquo; Vi oppdager feil sent</li>
-          <li><span class="symbol">☹</span> Vi blir redde for å gjøre endringer</li>
+          <li><span class="symbol">✇</span> Testing av kompleks oppførsel passer ikke til enhetstesting</li>
+          <li><span class="symbol">☹</span> Bortgjemte bugs &raquo; teamet oppdager feil sent</li>
+          <li><span class="symbol">☹</span> Teamet blir redde for å gjøre endringer</li>
+          <li><span class="symbol">☹</span> Testverktøy for javascript: modningsprosess pågår</li>
         </ul>
 
       </section>
@@ -69,7 +76,7 @@
 
         <!--
 
-        ...
+        Ikke enhets
         Integrasjon med byggprosessen og CI
         ...
 
@@ -102,7 +109,7 @@
 
         <ul>
           <li><span class="symbol">☺</span> WebDriver</li>
-          <li><span class="symbol">☺</span> Renere API</li>
+          <li><span class="symbol">☺</span> Renere API (enn Selenium 1)</li>
           <li><span class="symbol">☺</span> Lett infrastruktur</li>
           <li><span class="symbol">☺</span> Støtter distribuering</li>
           <li><span class="symbol">☺</span> API for flere typer språk</li>
@@ -124,7 +131,7 @@
 
         Man kan også bruke Selenium til systemtesting og akseptansetesting, men
         avhengig av størrelsen på systemene kan det kreve mer oppsett enn
-        hensiktsmessig når man skal kjøre det automatisert. Vi har benyttet
+        det er verdt når man skal kjøre det automatisert. Vi har benyttet
         Selenium i noen tilfeller til systemtesting og har hatt godt hell med
         det, mens andre tilfeller har vi mocket XHR-kall for å unngå
         nødvendigheten av  et komplett system under test.
@@ -154,7 +161,19 @@
 
         <!--
 
-        ...
+        Selenium kan kjøres direkte fra testverktøyet, men kan også integreres i byggprosessen.
+
+        Vi har valgt å knytte Selenium til mavens integration-test-fase av to grunner:
+        - Testene er integrasjonstester
+        - Vi ønsker å gå mot vår faktiske WAR-fil
+
+        Nevn at remotewebdriver (for miljø som kjører headless) krever en selenium-server kjørende
+
+        Det man typisk gjør er å sjekke type miljø og kjøre opp en webdriver basert på hvilket miljø testene kjører i.
+        
+        Det vi har gjort er å først forsøke en firefox-driver, og dersom det
+        ikke går vil man benytte en remotewebdriver på en gitt adresse. Det
+        krever at det kjører en seleniumserver på den adressen, selvsagt.
 
         -->
 
@@ -194,7 +213,12 @@
 
         <!--
 
-        ...
+        Hva skal til for å kunne skrive en seleniumtest?
+
+        Ikke mye (maven-eksempel), og i tillegg en nettleser
+
+        Flere av driverne som lenker selenium-API'et til nettleserne følger
+        med, mens andre må man laste ned selv.
 
         -->
 
@@ -285,6 +309,7 @@ public void theUserShouldBeAbleToTypeInQueryTermsAndGetResultPageOnSubmit() {
         <ul>
           <li><span class="symbol">☹</span> Hastighet</li>
           <li><span class="symbol">☹</span> Tilbakemeldinger ved feil</li>
+          <li><span class="symbol">☹</span> Conditions &raquo; lite lesbart</li>
         </ul>
       </section>
     </div>
