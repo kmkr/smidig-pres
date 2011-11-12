@@ -138,3 +138,9 @@ div.browsers,div.languages {
 .browser {
   display: inline-block;
 }
+
+div#questions p {
+  text-align: center;
+  font-size: 30px;
+  margin-top: 50px;
+}
